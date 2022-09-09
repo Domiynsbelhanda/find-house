@@ -5,9 +5,11 @@ import 'package:dio/dio.dart' as Dio;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../main.dart';
 import '../models/user.dart';
+import '../utils/env.dart';
 import 'dio.dart';
 
 class Auth extends ChangeNotifier{
+
   bool _isLoggedIn = false;
   User? _user;
   String? _token;
@@ -16,6 +18,8 @@ class Auth extends ChangeNotifier{
   User get user => _user!;
 
   final storage = new FlutterSecureStorage();
+
+  Env env = new Env();
 
   void login ({required Map creds, required BuildContext context}) async {
 
@@ -30,11 +34,11 @@ class Auth extends ChangeNotifier{
               MaterialPageRoute(builder: (context) => MyApp())
           );
         } else {
-          showAlertDialog(context, 'Authentification', '${res['data'].toString()}');
+          env.showAlertDialog(context, 'Authentification', '${res['data'].toString()}');
         }
       }
     } catch (e){
-      showAlertDialog(context, 'Authentification', '${e.toString()}');
+      env.showAlertDialog(context, 'Authentification', '${e.toString()}');
     }
   }
 
@@ -51,11 +55,11 @@ class Auth extends ChangeNotifier{
               MaterialPageRoute(builder: (context) => MyApp())
           );
         } else {
-          showAlertDialog(context, 'Authentification', '${res['data'].toString()}');
+          env.showAlertDialog(context, 'Authentification', '${res['data'].toString()}');
         }
       }
     } catch (e){
-      showAlertDialog(context, 'Authentification', '${e.toString()}');
+      env.showAlertDialog(context, 'Authentification', '${e.toString()}');
     }
   }
 
@@ -76,7 +80,7 @@ class Auth extends ChangeNotifier{
         notifyListeners();
       } catch (e){
         print('Errorification : $e');
-        showAlertDialog(context, 'User Profile', '${e.toString()}');
+        env.showAlertDialog(context, 'User Profile', '${e.toString()}');
       }
     }
   }
