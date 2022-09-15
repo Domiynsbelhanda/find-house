@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:karibukwako/services/auth.dart';
+import 'package:karibukwako/services/datas.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context)=> Auth()),
+          ChangeNotifierProvider(create: (context)=> Datas())
+        ],
+        child: MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -52,11 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
+      Provider.of<Datas>(context, listen: false).categorie();
       _counter++;
     });
   }
