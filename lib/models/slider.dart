@@ -1,18 +1,18 @@
-class Slider{
+class Sliders{
   int id;
   String title;
   String images;
   String description;
 
-  Slider(
+  Sliders(
       this.id,
       this.title,
       this.images,
       this.description);
 
-  Slider.fromJson(Map<String, dynamic> json)
+  Sliders.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         images = json['images'],
-        id = json['id'],
+        id = json['id'] as int,
         description = json['description'];
 }

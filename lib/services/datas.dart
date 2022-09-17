@@ -3,29 +3,43 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:karibukwako/models/slider.dart';
+import '../utils/env.dart';
 import 'dio.dart';
 
 class Datas extends ChangeNotifier{
-  List? _categories;
-  List? _rooms;
-  List? _noted;
+  List<Sliders>? _sliders;
 
-  List get categories => _categories!;
-  List get rooms => _rooms!;
-  List get noted => _noted!;
+  List<Sliders> get sliders => _sliders!;
 
-  void categorie() async {
-    try {
+  void slide(BuildContext context) async {
+    try{
       Dio.Response response = await dio()!.get('/homedata');
-      Iterable datas = jsonDecode(response.data);
-      // List<Categorie>? cat = List<Categorie>.from(datas.map((model)=> Categorie.fromJson(model)));
-      // _categories = cat;
-      print('${datas}');
+      Map<String, dynamic> mapData = jsonDecode(response.data);
+      Iterable datas = mapData['sliders'];
+      List<Sliders> slidings = List<Sliders>
+          .from(datas
+          .map((model)=>Sliders.fromJson(model)));
+      _sliders = slidings;
       notifyListeners();
-    } catch (e){
-      print(e);
+    } catch(e){
+      Env env = new Env();
+      env.showAlertDialog(context, 'Sliders Errors', '$e');
     }
   }
+
+  // void categorie() async {
+  //   try {
+  //     Dio.Response response = await dio()!.get('/homedata');
+  //     Iterable datas = jsonDecode(response.data);
+  //     // List<Categorie>? cat = List<Categorie>.from(datas.map((model)=> Categorie.fromJson(model)));
+  //     // _categories = cat;
+  //     print('${datas}');
+  //     notifyListeners();
+  //   } catch (e){
+  //     print(e);
+  //   }
+  // }
 
   // void room() async {
   //   try {
