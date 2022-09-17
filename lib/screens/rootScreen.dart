@@ -52,6 +52,19 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
     super.dispose();
   }
 
+  animatedPage(page) {
+    return FadeTransition(child: page, opacity: _animation);
+  }
+
+  void onPageChanged(int index) {
+    if (index == activeTabIndex) return;
+    _controller.reset();
+    setState(() {
+      activeTabIndex = index;
+    });
+    _controller.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
