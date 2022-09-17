@@ -25,7 +25,7 @@ class _HomePage extends State<HomePage>{
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(right: 16.0, top: 16.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Consumer<Datas>(
@@ -42,7 +42,7 @@ class _HomePage extends State<HomePage>{
                     }
                   },
                 ),
-              )
+              ),
             )
           ],
         ),

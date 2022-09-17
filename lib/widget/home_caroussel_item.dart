@@ -17,7 +17,7 @@ class ItemCaroussel extends StatelessWidget{
     return Container(
       width: env.size(context).width * 0.8,
       height: (env.size(context).height * 0.5) - 96,
-      margin: EdgeInsets.only(right: 16.0),
+      margin: EdgeInsets.only(left: 16.0),
       child: Stack(
         children: [
           Container(
@@ -68,22 +68,14 @@ class ItemCaroussel extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        '${'Superbe Villa A Kinshasa'}',
+                        '${data.title}',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: env.size(context).width / 20
                         ),
                       ),
-
-                      Text(
-                        '${'Superbe Villa A Kinshasa'}',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: env.size(context).width / 20
-                        ),
-                      )
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
