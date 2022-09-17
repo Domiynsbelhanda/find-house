@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:karibukwako/utils/env.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/homePage.dart';
+import '../services/datas.dart';
+import '../utils/color.dart';
 
 class RootScreen extends StatefulWidget{
   final int? tab;
@@ -68,6 +71,52 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: appBgColor,
+    );
+  }
+
+  Widget offline(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          'Erreur de connection,',
+          style: TextStyle(
+              color: primary
+          ),
+        ),
+
+        IconButton(
+          onPressed: (){
+            setState(() {
+              Provider.of<Datas>(context, listen: false).slide(context);
+              _refreshcurrIndex = _refreshcurrIndex == 0 ? 1 : 0;
+            });
+          },
+          icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, anim) => RotationTransition(
+                turns: child.key == ValueKey('icon1')
+                    ? Tween<double>(begin: 1, end: 0.75).animate(anim)
+                    : Tween<double>(begin: 0.75, end: 1).animate(anim),
+                child: FadeTransition(opacity: anim, child: child),
+              ),
+              child: _refreshcurrIndex == 0
+                  ? Icon(Icons.refresh, color: primary, key: const ValueKey('icon1'))
+                  : Icon(
+                Icons.refresh_sharp,
+                color: primary,
+                key: const ValueKey('icon2'),
+              )),
+        ),
+        Text(
+          'Actualisé',
+          style: TextStyle(
+              color: primary
+          ),
+        )
+      ],
+    );
   }
 }
