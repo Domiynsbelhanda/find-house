@@ -67,11 +67,14 @@ class ItemCaroussel extends StatelessWidget{
                   Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text(
-                        '${data.title}',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: env.size(context).width / 20
+                      Container(
+                        width: (env.size(context).width * 0.8) - 16 ,
+                        child: Text(
+                          '${data.title}',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: env.size(context).width / 20
+                          ),
                         ),
                       ),
                     ],
