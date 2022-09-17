@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karibukwako/pages/homePage.dart';
+import 'package:karibukwako/screens/rootScreen.dart';
 import 'package:karibukwako/services/auth.dart';
 import 'package:karibukwako/services/datas.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +35,7 @@ class _MyApp extends State<MyApp> {
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           )),
-      home: HomePage(),
+      home: RootScreen(),
     );
   }
 
