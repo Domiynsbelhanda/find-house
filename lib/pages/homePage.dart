@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../services/datas.dart';
 import '../utils/env.dart';
+import '../widget/home_caroussel_item.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -23,25 +26,23 @@ class _HomePage extends State<HomePage>{
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Container(
-                width: env.size(context).width,
-                height: env.size(context).height * 0.5,
-                decoration: BoxDecoration(
-
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Consumer<Datas>(
+                  builder: (context, datas, child){
+                    try {
+                      return Row(
+                        children: datas.sliders.map((e)=>ItemCaroussel(
+                          context: context,
+                          data: e,
+                        )).toList(),
+                      );
+                    } catch (e){
+                      return env.showAlertDialog(context, 'Erreur', 'Vérifiez votre connexion internet');
+                    }
+                  },
                 ),
-                child: Stack(
-                  children: [
-                    Container(
-                      height: (env.size(context).height * 0.5) - 96,
-                      width: env.size(context).width,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        borderRadius: BorderRadius.circular(16.0)
-                      ),
-                    )
-                  ],
-                ),
-              ),
+              )
             )
           ],
         ),
