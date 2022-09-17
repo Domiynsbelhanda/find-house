@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../pages/homePage.dart';
 import '../services/datas.dart';
 import '../utils/color.dart';
+import '../widget/bottom_bar_item.dart';
 
 class RootScreen extends StatefulWidget{
   final int? tab;
@@ -22,6 +23,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
   int activeTabIndex = 0;
   List barItems = [];
   int _refreshcurrIndex = 0;
+  Env env = new Env();
 
   late final AnimationController _controller = AnimationController(
     duration: Duration(milliseconds: Env.ANIMATED_BODY_MS),
@@ -117,6 +119,45 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
           ),
         )
       ],
+    );
+  }
+
+  Widget getBarPage() {
+    return IndexedStack(
+        index: activeTabIndex,
+        children: List.generate(
+            barItems.length, (index) => animatedPage(barItems[index]["page"])));
+  }
+
+  Widget getBottomBar() {
+    return Container(
+      height: env.size(context).width / 5.5,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: bottomBarColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(
+            left: 25,
+            right: 25,
+            top: 5
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: List.generate(
+            barItems.length,
+                (index) => BottomBarItem(
+              barItems[index]["icon"],
+              barItems[index]['text'],
+              isActive: activeTabIndex == index,
+              activeColor: primary,
+              onTap: () {
+                onPageChanged(index);
+              },
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

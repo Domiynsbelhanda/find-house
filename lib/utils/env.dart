@@ -7,6 +7,10 @@ class Env {
 
   static const int ANIMATED_BODY_MS = 500;
 
+  Size size(BuildContext context){
+    return MediaQuery.of(context).size;
+  }
+
   showAlertDialog(BuildContext context, String titre, String description){
     showDialog(
       context: context,
