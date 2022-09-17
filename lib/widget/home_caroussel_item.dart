@@ -24,14 +24,13 @@ class ItemCaroussel extends StatelessWidget{
             height: (env.size(context).height * 0.5) - 96,
             width: env.size(context).width,
             decoration: BoxDecoration(
-              color: Colors.blueGrey,
               borderRadius: BorderRadius.circular(16.0),
-              // image: DecorationImage(
-              //     fit: BoxFit.cover,
-              //     image: NetworkImage(
-              //         ''
-              //     )
-              // ),
+              image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: NetworkImage(
+                      'https://www.karibukwako.com/storage/${data.images}'
+                  )
+              ),
             ),
           ),
           Container(
@@ -44,7 +43,7 @@ class ItemCaroussel extends StatelessWidget{
                     end: FractionalOffset.bottomCenter,
                     colors: [
                       Colors.grey.withOpacity(0.0),
-                      Colors.black.withOpacity(.5),
+                      Colors.black.withOpacity(1.0),
                     ],
                     stops: [
                       0.0,
