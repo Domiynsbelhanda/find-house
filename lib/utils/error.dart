@@ -1,0 +1,4 @@
+enum ErrorStatus {
+  nodata,
+  offline,
+}

@@ -35,7 +35,10 @@ class _MyApp extends State<MyApp> {
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           )),
-      home: RootScreen(),
+      home: RootScreen(
+        tab: 0,
+        error: false,
+      ),
     );
   }
 

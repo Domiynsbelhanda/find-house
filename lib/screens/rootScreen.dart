@@ -5,11 +5,14 @@ import 'package:provider/provider.dart';
 import '../pages/homePage.dart';
 import '../services/datas.dart';
 import '../utils/color.dart';
+import '../utils/error.dart';
 import '../widget/bottom_bar_item.dart';
 
 class RootScreen extends StatefulWidget{
-  final int? tab;
-  RootScreen({this.tab});
+  final int tab;
+  final bool error;
+  final ErrorStatus? errorType;
+  RootScreen({required this.tab, required this.error, this.errorType});
 
   @override
   State<StatefulWidget> createState() {
@@ -39,7 +42,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
     // TODO: implement initState
     super.initState();
     _controller.forward();
-    activeTabIndex = widget.tab!;
+    activeTabIndex = widget.tab;
 
     barItems = [
       {
@@ -75,6 +78,23 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
     // TODO: implement build
     return Scaffold(
       backgroundColor: appBgColor,
+      bottomNavigationBar: getBottomBar(),
+        body: Stack(
+          children: [
+            getBarPage(),
+            widget.error ? Positioned(
+              bottom: 0.0,
+              child: Container(
+                  height: env.size(context).width / 7,
+                  width: env.size(context).width / 1,
+                  decoration: BoxDecoration(
+                      color: Colors.white
+                  ),
+                  child: widget.errorType!.name == 'offline' ? offline() : SizedBox()
+              ),
+            ) : SizedBox()
+          ],
+        )
     );
   }
 
