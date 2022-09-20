@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:karibukwako/screens/rootScreen.dart';
 import 'package:karibukwako/services/auth.dart';
 import 'package:karibukwako/services/datas.dart';
@@ -17,17 +18,10 @@ void main() {
   );
 }
 
-class MyApp extends StatefulWidget{
-  @override
-  State<MyApp> createState() => _MyApp();
-}
-
-class _MyApp extends State<MyApp> {
-
-
-
+class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    Provider.of<Datas>(context, listen: false).slide(context);
     return MaterialApp(
       title: 'Karibu Kwako',
       debugShowCheckedModeBanner: false,
@@ -40,10 +34,5 @@ class _MyApp extends State<MyApp> {
         error: false,
       ),
     );
-  }
-
-  @override
-  void initState() {
-    Provider.of<Datas>(context, listen: false).slide(context);
   }
 }

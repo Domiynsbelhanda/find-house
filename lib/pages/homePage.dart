@@ -26,6 +26,7 @@ class _HomePage extends State<HomePage>{
               padding: const EdgeInsets.only(right: 16.0, top: 16.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
+                // child: Text('Belhanda'),
                 child: Consumer<Datas>(
                   builder: (context, datas, child){
                     try {
