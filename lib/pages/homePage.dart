@@ -8,18 +8,16 @@ import '../widget/home_caroussel_item.dart';
 class HomePage extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HomePage();
   }
 }
 
 class _HomePage extends State<HomePage>{
 
-  Env env = new Env();
+  Env env = Env();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
