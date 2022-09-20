@@ -9,15 +9,14 @@ class ItemCaroussel extends StatelessWidget{
 
   ItemCaroussel({required this.data, required this.context});
 
-  Env env = new Env();
+  Env env = Env();
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       width: env.size(context).width * 0.8,
       height: (env.size(context).height * 0.5) - 96,
-      margin: EdgeInsets.only(left: 16.0),
+      margin: const EdgeInsets.only(left: 16.0),
       child: Stack(
         children: [
           Container(
@@ -37,7 +36,7 @@ class ItemCaroussel extends StatelessWidget{
             height: (env.size(context).height * 0.5) - 96,
             width: env.size(context).width,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(16.0)),
                 gradient: LinearGradient(
                     begin: FractionalOffset.topCenter,
                     end: FractionalOffset.bottomCenter,
@@ -45,7 +44,7 @@ class ItemCaroussel extends StatelessWidget{
                       Colors.grey.withOpacity(0.0),
                       Colors.black.withOpacity(1.0),
                     ],
-                    stops: [
+                    stops: const [
                       0.0,
                       1.0
                     ]
@@ -58,7 +57,7 @@ class ItemCaroussel extends StatelessWidget{
             child: Container(
               height: (env.size(context).height * 0.5) - 96,
               width: env.size(context).width,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.end,
