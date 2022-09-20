@@ -22,6 +22,7 @@ class _HomePage extends State<HomePage>{
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 16.0, top: 16.0),
@@ -38,7 +39,17 @@ class _HomePage extends State<HomePage>{
             ),
 
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+              child: Text(
+                'Nouvelles offres',
+                style: TextStyle(
+                  fontSize: 20.0
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
               child: getRecommend(),
             )
           ],
@@ -49,7 +60,7 @@ class _HomePage extends State<HomePage>{
 
   getRecommend() {
     return SingleChildScrollView(
-      padding: EdgeInsets.fromLTRB(15, 5, 0, 5),
+      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(

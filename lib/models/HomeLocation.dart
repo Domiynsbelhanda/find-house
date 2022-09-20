@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class HomeLocation {
   int id;
   int user_id;
@@ -15,9 +17,9 @@ class HomeLocation {
   int status;
   String reference;
   int type_id;
-  // TypeLocation type;
-  // DetailLocation detail;
-  // List<CategorieDetail> categories;
+  TypeLocation type;
+  DetailLocation detail;
+  List<CategorieDetail> categories;
 
   HomeLocation(
     this.id,
@@ -36,9 +38,9 @@ class HomeLocation {
       this.status,
       this.reference,
       this.type_id,
-      // this.type,
-      // this.detail,
-      // this.categories
+      this.type,
+      this.detail,
+      this.categories
   );
 
   HomeLocation.fromJson(Map<String, dynamic> json)
@@ -57,68 +59,69 @@ class HomeLocation {
         images = json['images'],
         status = json['status'],
         reference = json['reference'],
-        type_id = json['type_id'];
-        // type = json['type'];
-        // detail = json['detail'],
-        // categories = json['categories'];
+        type_id = json['type_id'],
+        type = TypeLocation.fromJson(jsonDecode(jsonEncode(json['type']))),
+        detail = DetailLocation
+            .fromJson(jsonDecode(jsonEncode(json['detail']))),
+        categories = List<CategorieDetail>
+      .from(jsonDecode(jsonEncode(json['categories']))
+      .map((model)=>CategorieDetail.fromJson(model)));
 }
 
-// class TypeLocation {
-//   int id;
-//   String name;
-//
-//   TypeLocation(this.id, this.name);
-//   TypeLocation.fromJson(Map<String, dynamic> json)
-//     : id = json['id'],
-//       name = json['name'];
-// }
-//
-// class DetailLocation {
-//   int id;
-//   int house_id;
-//   int number_rooms;
-//   int number_pieces;
-//   String toilet;
-//   bool electricity;
-//   String description;
-//
-//   DetailLocation(
-//       this.id,
-//       this.house_id,
-//       this.number_rooms,
-//       this.number_pieces,
-//       this.toilet,
-//       this.electricity,
-//       this.description
-//       );
-//   DetailLocation.fromJson(Map<String, dynamic> json)
-//   : id = json['id'],
-//     house_id = json['house_id'],
-//     number_rooms = json['number_rooms'],
-//     number_pieces = json['number_pieces'],
-//     toilet = json['toilet'],
-//     electricity = json['electricity'],
-//     description = json['description'];
-// }
-//
-// class CategorieDetail {
-//   String name;
-//   Pivot pivot;
-//
-//   CategorieDetail(this.name, this.pivot);
-//
-//   CategorieDetail.fromJson(Map<String, dynamic> json):
-//       name = json['name'],
-//       pivot = json['pivot'];
-// }
+class TypeLocation {
+  int id;
+  String name;
 
-// class Pivot {
-//   int house_id;
-//   int category_id;
-//
-//   Pivot(this.house_id, this.category_id);
-//
-//   Pivot.fromJson(Map<String, dynamic> json)
-//     : house_id = json['house_id'],
-//       category_id = json['category_id'];
-// }
+  TypeLocation(this.id, this.name);
+  TypeLocation.fromJson(Map<String, dynamic> json)
+    : id = json['id'],
+      name = json['name'];
+}
+
+class DetailLocation {
+  int id;
+  int house_id;
+  int number_rooms;
+  int number_pieces;
+  String toilet;
+  int electricity;
+  String description;
+
+  DetailLocation(
+      this.id,
+      this.house_id,
+      this.number_rooms,
+      this.number_pieces,
+      this.toilet,
+      this.electricity,
+      this.description
+      );
+  DetailLocation.fromJson(Map<String, dynamic> json)
+  : id = json['id'],
+    house_id = json['house_id'],
+    number_rooms = json['number_rooms'],
+    number_pieces = json['number_pieces'],
+    toilet = json['toilet'],
+    electricity = json['electricity'],
+    description = json['description'];
+}
+
+class CategorieDetail {
+  String name;
+
+  CategorieDetail(this.name);
+
+  CategorieDetail.fromJson(Map<String, dynamic> json):
+      name = json['name'];
+}
+
+class Pivot {
+  int house_id;
+  int category_id;
+
+  Pivot(this.house_id, this.category_id);
+
+  Pivot.fromJson(Map<String, dynamic> json)
+    : house_id = json['house_id'],
+      category_id = json['category_id'];
+}

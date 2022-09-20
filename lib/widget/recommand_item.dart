@@ -45,7 +45,7 @@ class RecommendItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.address,
+                      '${data.detail.number_pieces} pièces',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -63,18 +63,9 @@ class RecommendItem extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          size: 14,
-                          color: yellow,
-                        ),
-                        Text(
-                          '${data.commune}',
-                          style: TextStyle(fontSize: 12, color: labelColor),
-                        ),
-                      ],
+                    Text(
+                      '${data.categories[0].name}',
+                      style: TextStyle(fontSize: 12, color: labelColor),
                     ),
                     SizedBox(
                       height: 8,
