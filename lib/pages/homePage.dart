@@ -27,20 +27,13 @@ class _HomePage extends State<HomePage>{
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 // child: Text('Belhanda'),
-                child: Consumer<Datas>(
-                  builder: (context, datas, child){
-                    try {
-                      return Row(
-                        children: datas.sliders.map((e)=>ItemCaroussel(
-                          context: context,
-                          data: e,
-                        )).toList(),
-                      );
-                    } catch (e){
-                      return env.showAlertDialog(context, 'Erreur', 'Vérifiez votre connexion internet');
-                    }
-                  },
-                ),
+                child: Row(
+                  children: Provider.of<Datas>(context, listen: false).sliders
+                      .map((e)=>ItemCaroussel(
+                    context: context,
+                    data: e,
+                  )).toList(),
+                )
               ),
             )
           ],

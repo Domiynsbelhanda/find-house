@@ -3,14 +3,17 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as Dio;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:karibukwako/models/HomeLocation.dart';
 import 'package:karibukwako/models/slider.dart';
 import '../utils/env.dart';
 import 'dio.dart';
 
 class Datas extends ChangeNotifier{
   List<Sliders>? _sliders;
+  List<HomeLocation>? _homeLocation;
 
   List<Sliders> get sliders => _sliders!;
+  List<HomeLocation> get homeLocation => _homeLocation!;
 
   void slide(BuildContext context) async {
     try{
@@ -25,6 +28,25 @@ class Datas extends ChangeNotifier{
     } catch(e){
       Env env = new Env();
       env.showAlertDialog(context, 'Sliders Errors', '$e');
+    }
+  }
+
+  void homeLoc(BuildContext context) async {
+    try{
+      Dio.Response response = await dio()!.get('/homedata');
+      Map<String, dynamic> mapData = jsonDecode(response.data);
+      Iterable datas = mapData['apartments'];
+
+      List<HomeLocation> homes = List<HomeLocation>
+          .from(datas
+          .map((model)=>HomeLocation.fromJson(model)));
+
+      _homeLocation = homes;
+      notifyListeners();
+    } catch(e){
+      print('belhanda $e');
+      // Env env = Env();
+      // env.showAlertDialog(context, 'Home Errors', '$e');
     }
   }
 

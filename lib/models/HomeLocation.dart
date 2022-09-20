@@ -1,8 +1,8 @@
 class HomeLocation {
   int id;
   int user_id;
-  double prices;
-  double warranty_price;
+  int prices;
+  int warranty_price;
   String commune;
   String town;
   String district;
@@ -12,12 +12,12 @@ class HomeLocation {
   String latitude;
   String longitude;
   String images;
-  bool status;
+  int status;
   String reference;
   int type_id;
-  TypeLocation type;
-  DetailLocation detail;
-  List<CategorieDetail> categories;
+  // TypeLocation type;
+  // DetailLocation detail;
+  // List<CategorieDetail> categories;
 
   HomeLocation(
     this.id,
@@ -36,9 +36,9 @@ class HomeLocation {
       this.status,
       this.reference,
       this.type_id,
-      this.type,
-      this.detail,
-      this.categories
+      // this.type,
+      // this.detail,
+      // this.categories
   );
 
   HomeLocation.fromJson(Map<String, dynamic> json)
@@ -55,70 +55,70 @@ class HomeLocation {
         latitude = json['latitude'],
         longitude = json['longitude'],
         images = json['images'],
-        status = json['status'] as bool,
+        status = json['status'],
         reference = json['reference'],
-        type_id = json['type_id'],
-        type = json['type'],
-        detail = json['detail'],
-        categories = json['categories'];
+        type_id = json['type_id'];
+        // type = json['type'];
+        // detail = json['detail'],
+        // categories = json['categories'];
 }
 
-class TypeLocation {
-  int id;
-  String name;
+// class TypeLocation {
+//   int id;
+//   String name;
+//
+//   TypeLocation(this.id, this.name);
+//   TypeLocation.fromJson(Map<String, dynamic> json)
+//     : id = json['id'],
+//       name = json['name'];
+// }
+//
+// class DetailLocation {
+//   int id;
+//   int house_id;
+//   int number_rooms;
+//   int number_pieces;
+//   String toilet;
+//   bool electricity;
+//   String description;
+//
+//   DetailLocation(
+//       this.id,
+//       this.house_id,
+//       this.number_rooms,
+//       this.number_pieces,
+//       this.toilet,
+//       this.electricity,
+//       this.description
+//       );
+//   DetailLocation.fromJson(Map<String, dynamic> json)
+//   : id = json['id'],
+//     house_id = json['house_id'],
+//     number_rooms = json['number_rooms'],
+//     number_pieces = json['number_pieces'],
+//     toilet = json['toilet'],
+//     electricity = json['electricity'],
+//     description = json['description'];
+// }
+//
+// class CategorieDetail {
+//   String name;
+//   Pivot pivot;
+//
+//   CategorieDetail(this.name, this.pivot);
+//
+//   CategorieDetail.fromJson(Map<String, dynamic> json):
+//       name = json['name'],
+//       pivot = json['pivot'];
+// }
 
-  TypeLocation(this.id, this.name);
-  TypeLocation.fromJson(Map<String, dynamic> json)
-    : id = json['id'],
-      name = json['name'];
-}
-
-class DetailLocation {
-  int id;
-  int house_id;
-  int number_rooms;
-  int number_pieces;
-  String toilet;
-  bool electricity;
-  String description;
-
-  DetailLocation(
-      this.id,
-      this.house_id,
-      this.number_rooms,
-      this.number_pieces,
-      this.toilet,
-      this.electricity,
-      this.description
-      );
-  DetailLocation.fromJson(Map<String, dynamic> json)
-  : id = json['id'],
-    house_id = json['house_id'],
-    number_rooms = json['number_rooms'],
-    number_pieces = json['number_pieces'],
-    toilet = json['toilet'],
-    electricity = json['electricity'],
-    description = json['description'];
-}
-
-class CategorieDetail {
-  String name;
-  Pivot pivot;
-
-  CategorieDetail(this.name, this.pivot);
-
-  CategorieDetail.fromJson(Map<String, dynamic> json):
-      name = json['name'],
-      pivot = json['pivot'];
-}
-
-class Pivot {
-  int house_id;
-  int category_id;
-
-  Pivot(this.house_id, this.category_id);
-
-  Pivot.fromJson(Map<String, dynamic> json)
-    : house_id = json['house_id'],
-      category_id = json['category_id'];
-}
+// class Pivot {
+//   int house_id;
+//   int category_id;
+//
+//   Pivot(this.house_id, this.category_id);
+//
+//   Pivot.fromJson(Map<String, dynamic> json)
+//     : house_id = json['house_id'],
+//       category_id = json['category_id'];
+// }

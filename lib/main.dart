@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     Provider.of<Datas>(context, listen: false).slide(context);
+    Provider.of<Datas>(context, listen: false).homeLoc(context);
     return MaterialApp(
       title: 'Karibu Kwako',
       debugShowCheckedModeBanner: false,
