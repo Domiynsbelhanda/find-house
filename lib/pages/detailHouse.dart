@@ -22,8 +22,10 @@ class Details extends StatefulWidget {
 
 class _DetailsPageState extends State<Details> {
 
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _dateController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController messagesController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -80,13 +82,14 @@ class _DetailsPageState extends State<Details> {
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () {
-                              bool auth = Provider.of<Auth>(context, listen: false).authenticated;
-                              if(auth){
-                                reservation_dialog(context);
-                              } else {
+                              // bool auth = Provider.of<Auth>(context, listen: false).authenticated;
+                              reservation_dialog(context);
+                              // if(auth){
+                              //   reservation_dialog(context);
+                              // } else {
                                 // Navigator.of(context).push(
                                 //     MaterialPageRoute(builder: (context) => LoginScreen()));
-                              }
+                              // }
                             },
                             child: Container(
                               height: env.size(context).width / 9,
@@ -153,22 +156,17 @@ class _DetailsPageState extends State<Details> {
     Widget plusButton = TextButton(
       child: Text("CONFIRMER"),
       onPressed: () {
-        // Map data = {
-        //   'id':5,
-        //   'phones': _phoneController.text,
-        //   'date' : _dateController.text,
-        //   'keys' : widget.data.id
-        // };
-        // if(_formKey.currentState!.validate()){
-        //   bool auth = Provider.of<Auth>(context, listen: false).authenticated;
-        //   if(auth){
-        //     Navigator.pop(context);
-        //     Provider.of<Datas>(context, listen: false).reservation(creds: data, context: context);
-        //   } else {
-        //     Navigator.of(context).push(
-        //         MaterialPageRoute(builder: (context) => LoginScreen()));
-        //   }
-        // }
+        Map data = {
+          'apartment':widget.data.id,
+          'username': usernameController.text,
+          'email' : emailController.text,
+          'phone_number': phoneController.text,
+          'messages' : messagesController.text,
+        };
+        if(_formKey.currentState!.validate()){
+          Navigator.pop(context);
+          // Provider.of<Datas>(context, listen: false).reservation(creds: data, context: context);
+        }
       },
     );
 
@@ -189,16 +187,66 @@ class _DetailsPageState extends State<Details> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Téléphone',
+                    'Nom complet',
                     style: TextStyle(
                         fontSize: 18.0
                     ),
                   ),
                   SizedBox(height: 8.0),
                   TextFormField(
-                    controller: _phoneController,
+                    controller: usernameController,
+                    keyboardType : TextInputType.name,
+                    validator: (value) => value!.isEmpty ? 'Veuillez entrer un votre nom' : null,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: "Enter your username",
+                      fillColor: Colors.white70,
+                    ),
+                  ),
+
+                  SizedBox(height: 16.0),
+
+                  Text(
+                    'Adresse email',
+                    style: TextStyle(
+                        fontSize: 18.0
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  TextFormField(
+                    controller: emailController,
+                    keyboardType : TextInputType.emailAddress,
+                    validator: (value) => value!.isEmpty ? 'Veuillez entrer une adresse mail' : null,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: "Enter your mail address",
+                      fillColor: Colors.white70,
+                    ),
+                  ),
+
+                  SizedBox(height: 16.0),
+
+                  Text(
+                    'Numéro de téléphone',
+                    style: TextStyle(
+                        fontSize: 18.0
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  TextFormField(
+                    controller: phoneController,
                     keyboardType : TextInputType.phone,
-                    validator: (value) => value!.isEmpty ? 'Veuillez entrer un numéro valide' : null,
+                    validator: (value) => value!.isEmpty ? 'Veuillez entrer un numéro de téléphone' : null,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                       border: OutlineInputBorder(
@@ -214,47 +262,26 @@ class _DetailsPageState extends State<Details> {
                   SizedBox(height: 16.0),
 
                   Text(
-                    'Date de reservation',
+                    'Message',
                     style: TextStyle(
                         fontSize: 18.0
                     ),
                   ),
                   SizedBox(height: 8.0),
                   TextFormField(
-                      controller: _dateController,
-                      keyboardType: TextInputType.datetime,
-                      validator: (value) => value!.isEmpty ? 'Veuillez entrer une date valide' : null,
-                      decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          filled: true,
-                          hintStyle: TextStyle(color: Colors.grey[800]),
-                          hintText: "Enter your date",
-                          fillColor: Colors.white70,
-                          icon: Icon(Icons.calendar_today), //icon of text field
-                          labelText: "Select Date" //label text of field
+                    controller: messagesController,
+                    keyboardType : TextInputType.emailAddress,
+                    validator: (value) => value!.isEmpty ? 'Veuillez entrer un message' : null,
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                            context: context, initialDate: DateTime.now(),
-                            firstDate: DateTime(2020), //DateTime.now() - not to allow to choose before today.
-                            lastDate: DateTime(2100)
-                        );
-
-                        if(pickedDate != null ){
-                          print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
-                          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
-
-                          setState(() {
-                            _dateController.text = formattedDate; //set output date to TextField value.
-                          });
-                        }else{
-                          env.showAlertDialog(context, 'Date de reservation', 'Erreur, recommencer.');
-                        }
-                      }
+                      filled: true,
+                      hintStyle: TextStyle(color: Colors.grey[800]),
+                      hintText: "Enter your message here",
+                      fillColor: Colors.white70,
+                    ),
                   ),
 
                   Center(
