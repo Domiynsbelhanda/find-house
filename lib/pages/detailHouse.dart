@@ -165,7 +165,7 @@ class _DetailsPageState extends State<Details> {
         };
         if(_formKey.currentState!.validate()){
           Navigator.pop(context);
-          // Provider.of<Datas>(context, listen: false).reservation(creds: data, context: context);
+          Provider.of<Datas>(context, listen: false).reservations(context, data);
         }
       },
     );

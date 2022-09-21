@@ -78,6 +78,20 @@ class Datas extends ChangeNotifier{
     }
   }
 
+  void reservations(BuildContext context, var data) async {
+    try{
+      Dio.Response response = await dio()!.post('/reservation', data: data);
+      Map<String, dynamic> datas = jsonDecode(response.data);
+      env.showAlertDialog(context, 'reservation', '$datas');
+      _offline = false;
+      notifyListeners();
+    } catch(e){
+      _offline = true;
+      env.showAlertDialog(context, 'Datas Errors', '$e');
+      notifyListeners();
+    }
+  }
+
   // void categorie() async {
   //   try {
   //     Dio.Response response = await dio()!.get('/homedata');
