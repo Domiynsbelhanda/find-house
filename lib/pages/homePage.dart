@@ -22,6 +22,8 @@ class _HomePage extends State<HomePage>{
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Datas>(context, listen: false).slide(context);
+    Provider.of<Datas>(context, listen: false).homeLoc(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

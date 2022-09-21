@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:karibukwako/widget/showAlertDialog.dart';
 
+import '../widget/showReservation.dart';
+
 class Env {
   Color primaryColor = const Color(0xff6153ac);
   Color secondaryColor = const Color(0xff70c5d5);
@@ -16,6 +18,15 @@ class Env {
       context: context,
       builder: (BuildContext context) {
         return ShowAlertDialog(titre, description);
+      },
+    );
+  }
+
+  showReservation(BuildContext context, String datas){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ShowReservation(datas);
       },
     );
   }

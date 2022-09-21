@@ -81,8 +81,8 @@ class Datas extends ChangeNotifier{
   void reservations(BuildContext context, var data) async {
     try{
       Dio.Response response = await dio()!.post('/reservation', data: data);
-      Map<String, dynamic> datas = jsonDecode(response.data);
-      env.showAlertDialog(context, 'reservation', '$datas');
+      String datas = jsonDecode(response.data);
+      env.showReservation(context, datas);
       _offline = false;
       notifyListeners();
     } catch(e){

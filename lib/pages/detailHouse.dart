@@ -38,6 +38,7 @@ class _DetailsPageState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<Datas>(context, listen: false).details(context, widget.data.id.toString());
     return Scaffold(
       backgroundColor: appBgColor,
       body: Stack(
