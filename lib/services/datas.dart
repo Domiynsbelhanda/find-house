@@ -13,6 +13,7 @@ class Datas extends ChangeNotifier{
   List<HomeLocation>? _homeLocation;
   bool? _offline = false;
   HomeLocation? _details;
+  int? _reservation;
 
   Env env = Env();
 
@@ -20,6 +21,7 @@ class Datas extends ChangeNotifier{
   List<HomeLocation> get homeLocation => _homeLocation!;
   bool get offline => _offline!;
   HomeLocation get detail => _details!;
+  int get reservation => _reservation!;
 
   void slide(BuildContext context) async {
     try{
@@ -64,12 +66,11 @@ class Datas extends ChangeNotifier{
 
   void details(BuildContext context, String key) async {
     try{
-      Dio.Response response = await dio()!.get('/detail');
+      Dio.Response response = await dio()!.post('/detail', data: {'id': key});
       Map<String, dynamic> datas = jsonDecode(response.data);
-
-      HomeLocation homes = HomeLocation.fromJson(datas);
-
-      _details = homes;
+      //HomeLocation homes = HomeLocation.fromJson(datas);
+      _reservation = datas['reservations_count'];
+      //_details = homes;
       _offline = false;
       notifyListeners();
     } catch(e){

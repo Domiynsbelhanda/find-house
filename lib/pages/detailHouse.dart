@@ -31,7 +31,7 @@ class _DetailsPageState extends State<Details> {
 
   @override
   void initState() {
-    Provider.of<Datas>(context, listen: false).details(context, '22');
+    Provider.of<Datas>(context, listen: false).details(context, widget.data.id.toString());
   }
 
   @override
