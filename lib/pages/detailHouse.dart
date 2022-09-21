@@ -87,7 +87,7 @@ class _DetailsPageState extends State<Details> {
                               width: env.size(context).width / 1.28,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4.0),
-                                  color: env.primaryColor
+                                  color: env.secondaryColor
                               ),
                               child: const Center(
                                 child: const Text(
@@ -289,6 +289,49 @@ class _DetailsPageState extends State<Details> {
             SizedBox(
               height: 15,
             ),
+
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: GestureDetector(
+                        onTap: ()=>urlLaunch('tel:${widget.data.phone_number}'),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4.0),
+                              color: env.primaryColor
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                      FontAwesomeIcons.squarePhone,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(width: 8.0,),
+                                  Text(
+                                    "Nous Contactez",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 16),
 
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
