@@ -7,6 +7,7 @@ import '../utils/env.dart';
 import '../widget/feature_item.dart';
 import '../widget/home_caroussel_item.dart';
 import '../widget/recommand_item.dart';
+import 'detailHouse.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -96,12 +97,12 @@ class _HomePage extends State<HomePage>{
               });
             },
             onTap: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => Details(
-              //     data: datas.rooms[index],
-              //   )),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Details(
+                  data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+                )),
+              );
             },
           ),
         ),
@@ -127,12 +128,12 @@ class _HomePage extends State<HomePage>{
               child: RecommendItem(
                 data: Provider.of<Datas>(context, listen: false).homeLocation[index],
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => Details(
-                  //     data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                  //   )),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Details(
+                      data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+                    )),
+                  );
                 },
               ),
             ),
