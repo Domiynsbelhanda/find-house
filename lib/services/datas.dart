@@ -68,9 +68,7 @@ class Datas extends ChangeNotifier{
     try{
       Dio.Response response = await dio()!.post('/detail', data: {'id': key});
       Map<String, dynamic> datas = jsonDecode(response.data);
-      //HomeLocation homes = HomeLocation.fromJson(datas);
       _reservation = datas['reservations_count'];
-      //_details = homes;
       _offline = false;
       notifyListeners();
     } catch(e){

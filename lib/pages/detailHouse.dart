@@ -337,7 +337,71 @@ class _DetailsPageState extends State<Details> {
               ),
             ),
 
-            SizedBox(height: 16),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.green
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(width: 8.0,),
+                                Text(
+                                  '${widget.data.type.name}',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.white
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+
+                  SizedBox(width : 16.0),
+
+                  Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4.0),
+                            color: Colors.red
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Center(
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(width: 8.0,),
+                                Text(
+                                  '${Provider.of<Datas>(context, listen: false).reservation} En attente',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      color: Colors.white
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                  ),
+                ],
+              ),
+            ),
+
+            SizedBox(height: 16.0),
 
             Padding(
               padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
