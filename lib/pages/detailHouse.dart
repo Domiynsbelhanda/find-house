@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../services/auth.dart';
 import 'package:intl/intl.dart';
 
-import '../services/datas.dart';
 import '../utils/color.dart';
 import '../utils/env.dart';
 import '../widget/custom_image.dart';
@@ -90,14 +89,13 @@ class _DetailsPageState extends State<Details> {
                                   borderRadius: BorderRadius.circular(4.0),
                                   color: env.primaryColor
                               ),
-                              child: Center(
+                              child: const Center(
                                 child: const Text(
                                   "Réserver",
                                   style: TextStyle(
                                       fontSize: 20.0,
                                       color: Colors.white
                                   ),
-
                                 ),
                               ),
                             ),
@@ -296,7 +294,7 @@ class _DetailsPageState extends State<Details> {
               padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
               child: Container(
                 child: Text(
-                  '${widget.data.address}',
+                  '${widget.data.categories[0].name} ${widget.data.detail.number_pieces} Pièce (s).',
                   style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -306,61 +304,23 @@ class _DetailsPageState extends State<Details> {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Icon(
-                    Icons.star,
-                    size: 20,
-                    color: yellow,
-                  ),
-                  SizedBox(
-                    width: 3,
-                  ),
-                  Text(
-                    '{widget.data.note}',
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
-                  ),
-                  SizedBox(width: 16.0,),
-                  Text(
-                    'Max : {widget.data.places} place(s)',
-                    style: TextStyle(fontSize: 15, color: labelColor),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    '${widget.data.prices} \$',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: env.primaryColor,
-                    ),
-                  ),
-                  SizedBox(width: 16.0,),
-                  Text(
-                    'Max : ${widget.data.town}',
-                    style: TextStyle(
-                        fontSize: 15, color: Colors.blueGrey
-                    ),
-                  ),
-                ],
+              padding: const EdgeInsets.fromLTRB(16, 16.0, 0, 12),
+              child: Container(
+                child: Text(
+                  'Description',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: textColor),
+                ),
               ),
             ),
 
             Container(
-              width: MediaQuery.of(context).size.width / 1.05,
+              width: MediaQuery.of(context).size.width,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(15, 16, 0, 0),
+                padding: const EdgeInsets.fromLTRB(15, 0, 0, 16),
                 child: Text(
-                  '{widget.data.description}',
+                  '${widget.data.detail.description}',
                   style: TextStyle(
                     fontSize: 16, color: Colors.black,
                   ),
@@ -368,44 +328,11 @@ class _DetailsPageState extends State<Details> {
               ),
             ),
 
-            SizedBox(height: 16.0,),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 0, 0, 16),
-              child: Row(
-                children: [
-                  Icon(
-                    FontAwesomeIcons.locationDot,
-                    color: Colors.deepPurple,
-                    size: env.size(context).width / 7,
-                  ),
-                  SizedBox(width: 16.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Adresse',
-                        style: TextStyle(
-                            fontSize: 18,
-                            color: textColor),
-                      ),
-                      Text(
-                        '${widget.data.address}',
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: textColor),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16.0, 0, 12),
               child: Container(
                 child: Text(
-                  'Information sur la salle',
+                  'Details appartements',
                   style: TextStyle(
                       fontSize: 20,
                       color: textColor),
@@ -413,31 +340,22 @@ class _DetailsPageState extends State<Details> {
               ),
             ),
 
-            cardInfo('Adresse', '${widget.data.address}'),
+            cardInfo('Code Référence', '${widget.data.reference}'),
 
-            cardInfo('Commune', '${widget.data.commune}'),
+            cardInfo('Chambres', '${widget.data.detail.number_rooms}'),
 
-            cardInfo('Ville', '${widget.data.town}'),
+            cardInfo('Nombre des pièces', '${widget.data.detail.number_pieces}'),
 
-            cardInfo('Capacité', '{widget.data.places}'),
+            cardInfo('Toilette interieur', '${widget.data.detail.toilet}'),
 
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 16.0, 0, 12),
-              child: Container(
-                child: Text(
-                  'Contact de la salle',
-                  style: TextStyle(
-                      fontSize: 20,
-                      color: textColor),
-                ),
-              ),
-            ),
+            cardInfo('Prix Mensuel', '${widget.data.prices} \$'),
 
-            cardInfoPhone('Téléphone', '{widget.data.phones}'),
+            cardInfo('Garantie', '${widget.data.warranty_price} \$'),
 
-            cardInfo('Adresse Maile', '${widget.data.email}'),
+            cardInfo('Electricité', '${widget.data.detail.electricity == 1 ? 'Disponible' : 'Non Disponible'}'),
 
-            SizedBox(height: 84.0),
+            SizedBox(height: 84.0,)
+
           ],
         ),
       ),
