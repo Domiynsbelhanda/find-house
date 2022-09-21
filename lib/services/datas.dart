@@ -60,6 +60,28 @@ class Datas extends ChangeNotifier{
     }
   }
 
+  void details(BuildContext context, String key) async {
+    try{
+      Dio.Response response = await dio()!.get('/detail');
+      Iterable datas = jsonDecode(response.data);
+
+      List<HomeLocation> homes = List<HomeLocation>
+          .from(datas
+          .map((model)=>HomeLocation.fromJson(model)));
+
+      _homeLocation = homes;
+      _offline = false;
+      notifyListeners();
+    } catch(e){
+      _offline = true;
+      Env env = Env();
+      env.showAlertDialog(context, 'Datas Errors', '$e');
+      notifyListeners();
+      // Env env = Env();
+      // env.showAlertDialog(context, 'Home Errors', '$e');
+    }
+  }
+
   // void categorie() async {
   //   try {
   //     Dio.Response response = await dio()!.get('/homedata');

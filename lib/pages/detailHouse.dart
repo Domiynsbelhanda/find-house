@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../services/auth.dart';
 import 'package:intl/intl.dart';
 
+import '../services/datas.dart';
 import '../utils/color.dart';
 import '../utils/env.dart';
 import '../widget/custom_image.dart';
@@ -27,6 +28,11 @@ class _DetailsPageState extends State<Details> {
   final _formKey = GlobalKey<FormState>();
 
   Env env = Env();
+
+  @override
+  void initState() {
+    Provider.of<Datas>(context, listen: false).details(context, '22');
+  }
 
   @override
   Widget build(BuildContext context) {
