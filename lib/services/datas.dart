@@ -12,10 +12,14 @@ class Datas extends ChangeNotifier{
   List<Sliders>? _sliders;
   List<HomeLocation>? _homeLocation;
   bool? _offline = false;
+  HomeLocation? _details;
+
+  Env env = Env();
 
   List<Sliders> get sliders => _sliders!;
   List<HomeLocation> get homeLocation => _homeLocation!;
   bool get offline => _offline!;
+  HomeLocation get detail => _details!;
 
   void slide(BuildContext context) async {
     try{
@@ -30,7 +34,6 @@ class Datas extends ChangeNotifier{
       notifyListeners();
     } catch(e){
       _offline = true;
-      Env env = Env();
       env.showAlertDialog(context, 'Sliders Errors', '$e');
       notifyListeners();
     }
@@ -52,7 +55,6 @@ class Datas extends ChangeNotifier{
     } catch(e){
       print('belhanda $e');
       _offline = true;
-      Env env = Env();
       env.showAlertDialog(context, 'Datas Errors', '$e');
       notifyListeners();
       // Env env = Env();
@@ -63,22 +65,17 @@ class Datas extends ChangeNotifier{
   void details(BuildContext context, String key) async {
     try{
       Dio.Response response = await dio()!.get('/detail');
-      Iterable datas = jsonDecode(response.data);
+      Map<String, dynamic> datas = jsonDecode(response.data);
 
-      List<HomeLocation> homes = List<HomeLocation>
-          .from(datas
-          .map((model)=>HomeLocation.fromJson(model)));
+      HomeLocation homes = HomeLocation.fromJson(datas);
 
-      _homeLocation = homes;
+      _details = homes;
       _offline = false;
       notifyListeners();
     } catch(e){
       _offline = true;
-      Env env = Env();
       env.showAlertDialog(context, 'Datas Errors', '$e');
       notifyListeners();
-      // Env env = Env();
-      // env.showAlertDialog(context, 'Home Errors', '$e');
     }
   }
 
