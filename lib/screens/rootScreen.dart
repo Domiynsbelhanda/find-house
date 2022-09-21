@@ -82,7 +82,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
         body: Stack(
           children: [
             getBarPage(),
-            widget.error ? Positioned(
+            Provider.of<Datas>(context, listen: false).offline ? Positioned(
               bottom: 0.0,
               child: Container(
                   height: env.size(context).width / 7,
@@ -90,7 +90,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
                   decoration: BoxDecoration(
                       color: Colors.white
                   ),
-                  child: widget.errorType!.name == 'offline' ? offline() : SizedBox()
+                  child: offline()
               ),
             ) : SizedBox()
           ],

@@ -11,9 +11,11 @@ import 'dio.dart';
 class Datas extends ChangeNotifier{
   List<Sliders>? _sliders;
   List<HomeLocation>? _homeLocation;
+  bool? _offline = false;
 
   List<Sliders> get sliders => _sliders!;
   List<HomeLocation> get homeLocation => _homeLocation!;
+  bool get offline => _offline!;
 
   void slide(BuildContext context) async {
     try{
@@ -24,10 +26,13 @@ class Datas extends ChangeNotifier{
           .from(datas
           .map((model)=>Sliders.fromJson(model)));
       _sliders = slidings;
+      _offline = false;
       notifyListeners();
     } catch(e){
-      Env env = new Env();
+      _offline = true;
+      Env env = Env();
       env.showAlertDialog(context, 'Sliders Errors', '$e');
+      notifyListeners();
     }
   }
 
@@ -42,9 +47,14 @@ class Datas extends ChangeNotifier{
           .map((model)=>HomeLocation.fromJson(model)));
 
       _homeLocation = homes;
+      _offline = false;
       notifyListeners();
     } catch(e){
       print('belhanda $e');
+      _offline = true;
+      Env env = Env();
+      env.showAlertDialog(context, 'Datas Errors', '$e');
+      notifyListeners();
       // Env env = Env();
       // env.showAlertDialog(context, 'Home Errors', '$e');
     }

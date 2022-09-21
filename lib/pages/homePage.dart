@@ -76,60 +76,71 @@ class _HomePage extends State<HomePage>{
   }
 
   getFeature() {
-    return CarouselSlider(
-      options: CarouselOptions(
-        height: 312,
-        enlargeCenterPage: true,
-        disableCenter: true,
-        viewportFraction: .75,
-      ),
-      items: List.generate(
-        Provider.of<Datas>(context, listen: false).homeLocation.length < 6
-            ? Provider.of<Datas>(context, listen: false).homeLocation.length : 6,
-            (index) => FeatureItem(
-          data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-          onTapFavorite: () {
-            setState(() {
-              // features[index]["is_favorited"] =
-              // !features[index]["is_favorited"];
-            });
-          },
-          onTap: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => Details(
-            //     data: datas.rooms[index],
-            //   )),
-            // );
-          },
+    try{
+      return CarouselSlider(
+        options: CarouselOptions(
+          height: 312,
+          enlargeCenterPage: true,
+          disableCenter: true,
+          viewportFraction: .75,
         ),
-      ),
-    );
+        items: List.generate(
+          Provider.of<Datas>(context, listen: false).homeLocation.length < 6
+              ? Provider.of<Datas>(context, listen: false).homeLocation.length : 6,
+              (index) => FeatureItem(
+            data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+            onTapFavorite: () {
+              setState(() {
+                // features[index]["is_favorited"] =
+                // !features[index]["is_favorited"];
+              });
+            },
+            onTap: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => Details(
+              //     data: datas.rooms[index],
+              //   )),
+              // );
+            },
+          ),
+        ),
+      );
+    }
+    catch(e) {
+      return Center(
+        child: Text('Vérifiez votre connexion internet')
+      );
+    }
   }
 
   getRecommend() {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: List.generate(
-          Provider.of<Datas>(context, listen: false).homeLocation.length,
-              (index) => Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: RecommendItem(
-              data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Details(
-                //     data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                //   )),
-                // );
-              },
+    try{
+      return SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: List.generate(
+            Provider.of<Datas>(context, listen: false).homeLocation.length,
+                (index) => Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: RecommendItem(
+                data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Details(
+                  //     data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+                  //   )),
+                  // );
+                },
+              ),
             ),
           ),
         ),
-      ),
-    );;
+      );
+    } catch(e){
+      return SizedBox();
+    }
   }
 }
