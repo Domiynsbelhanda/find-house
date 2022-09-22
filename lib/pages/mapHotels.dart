@@ -3,18 +3,20 @@ import 'package:label_marker/label_marker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../services/datas.dart';
 import '../widget/map_dialog.dart';
 
 
 class MapHotels extends StatefulWidget {
-  MapHotels({this.rooms});
-  final List<HomeLocation>? rooms;
+
   @override
   State<MapHotels> createState() => _MapHotels();
 }
 
 class _MapHotels extends State<MapHotels> {
+  late List<HomeLocation> rooms;
   late String _mapStyle;
   late GoogleMapController _mapController;
   final Set<Marker> markers = new Set();
@@ -30,29 +32,29 @@ class _MapHotels extends State<MapHotels> {
         controller.setMapStyle(_mapStyle);
 
         LatLng latLng_1 = LatLng(
-          double.parse(widget.rooms![0].latitude),
-          double.parse(widget.rooms![0].longitude),
+          double.parse(rooms[0].latitude),
+          double.parse(rooms[0].longitude),
         );
         LatLng latLng_2 = LatLng(
-          double.parse(widget.rooms![widget.rooms!.length -1].latitude),
-          double.parse(widget.rooms![widget.rooms!.length -1].longitude),
+          double.parse(rooms[rooms.length -1].latitude),
+          double.parse(rooms[rooms.length -1].longitude),
         );
 
-        for(var i = 0; i < widget.rooms!.length; i++){
+        for(var i = 0; i < rooms.length; i++){
           markers.addLabelMarker(LabelMarker(
-              label: '${widget.rooms![i].categories[0].name} ${widget.rooms![i].detail.number_pieces} pièces \n ${widget.rooms![i].prices} \$',
+              label: '${rooms[i].categories[0].name} ${rooms[i].detail.number_pieces} pièces \n ${rooms[i].prices} \$',
               textStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 50.0
               ),
-              markerId: MarkerId('${widget.rooms![i].id}'),
+              markerId: MarkerId('${rooms[i].id}'),
               position: LatLng(
-                  double.parse(widget.rooms![i].latitude),
-                  double.parse(widget.rooms![i].longitude)
+                  double.parse(rooms[i].latitude),
+                  double.parse(rooms[i].longitude)
               ),
               backgroundColor: Colors.green,
               onTap: (){
-                show_room_map_dialog(context, widget.rooms![i]);
+                show_room_map_dialog(context, rooms[i]);
               }
           )).then((value) {
             setState(() {});
@@ -89,6 +91,7 @@ class _MapHotels extends State<MapHotels> {
   @override
   initState() {
     super.initState();
+    rooms = Provider.of<Datas>(context, listen: false).all;
     rootBundle.loadString('assets/text/map_style.txt').then((string) {
       _mapStyle = string;
     });
@@ -96,8 +99,9 @@ class _MapHotels extends State<MapHotels> {
 
   @override
   Widget build(BuildContext context) {
+    rooms = Provider.of<Datas>(context, listen: false).all;
     _kGooglePlex = CameraPosition(
-      target: LatLng(double.parse(widget.rooms![0].latitude), double.parse(widget.rooms![0].longitude)),
+      target: LatLng(double.parse(rooms[0].latitude), double.parse(rooms[0].longitude)),
       zoom: 14.4746,
     );
     return Scaffold(
