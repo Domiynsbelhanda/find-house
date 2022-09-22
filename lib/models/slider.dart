@@ -1,8 +1,8 @@
 class Sliders{
-  int id;
-  String title;
-  String images;
-  String description;
+  dynamic id;
+  dynamic title;
+  dynamic images;
+  dynamic description;
 
   Sliders(
       this.id,

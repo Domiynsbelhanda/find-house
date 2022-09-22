@@ -55,7 +55,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
       },
 
       {
-        "icon": "assets/icons/pin-area.svg",
+        "icon": "assets/icons/explore.svg",
         "page": ListItem(),
         "text": "Maisons"
       },

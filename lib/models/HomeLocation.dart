@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 class HomeLocation {
-  int id;
-  int user_id;
-  int prices;
-  int warranty_price;
-  String commune;
-  String town;
-  String district;
-  String address;
-  String? phone_number;
-  String email;
-  String latitude;
-  String longitude;
-  String images;
-  int status;
+  dynamic id;
+  dynamic user_id;
+  dynamic prices;
+  dynamic warranty_price;
+  dynamic commune;
+  dynamic town;
+  dynamic district;
+  dynamic address;
+  dynamic phone_number;
+  dynamic email;
+  dynamic latitude;
+  dynamic longitude;
+  dynamic images;
+  dynamic status;
   String reference;
-  int type_id;
+  dynamic type_id;
   TypeLocation type;
   DetailLocation detail;
   List<CategorieDetail> categories;
@@ -61,16 +61,13 @@ class HomeLocation {
         reference = json['reference'],
         type_id = json['type_id'],
         type = TypeLocation.fromJson(jsonDecode(jsonEncode(json['type']))),
-        detail = DetailLocation
-            .fromJson(jsonDecode(jsonEncode(json['detail']))),
-        categories = List<CategorieDetail>
-      .from(jsonDecode(jsonEncode(json['categories']))
-      .map((model)=>CategorieDetail.fromJson(model)));
+        detail = DetailLocation.fromJson(jsonDecode(jsonEncode(json['detail']))),
+        categories = List<CategorieDetail>.from(jsonDecode(jsonEncode(json['categories'])).map((model)=>CategorieDetail.fromJson(model)));
 }
 
 class TypeLocation {
-  int id;
-  String name;
+  dynamic id;
+  dynamic name;
 
   TypeLocation(this.id, this.name);
   TypeLocation.fromJson(Map<String, dynamic> json)
@@ -79,13 +76,13 @@ class TypeLocation {
 }
 
 class DetailLocation {
-  int id;
-  int house_id;
-  int number_rooms;
-  int number_pieces;
-  String toilet;
-  int electricity;
-  String description;
+  dynamic id;
+  dynamic house_id;
+  dynamic number_rooms;
+  dynamic number_pieces;
+  dynamic toilet;
+  dynamic electricity;
+  dynamic description;
 
   DetailLocation(
       this.id,
@@ -107,7 +104,7 @@ class DetailLocation {
 }
 
 class CategorieDetail {
-  String name;
+  dynamic name;
 
   CategorieDetail(this.name);
 
@@ -116,8 +113,8 @@ class CategorieDetail {
 }
 
 class Pivot {
-  int house_id;
-  int category_id;
+  dynamic house_id;
+  dynamic category_id;
 
   Pivot(this.house_id, this.category_id);
 

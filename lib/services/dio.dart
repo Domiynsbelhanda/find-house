@@ -3,8 +3,8 @@ import 'package:dio/dio.dart';
 Dio? dio(){
   Dio dio = new Dio();
 
-  dio.options.baseUrl = "http://10.0.2.2:8000/api";
-  //dio.options.baseUrl = "https://your_url.com/api";
+  // dio.options.baseUrl = "http://10.0.2.2:8000/api";
+  dio.options.baseUrl = "https://karibukwako.com/api";
   dio.options.responseType = ResponseType.plain;
   dio.options.contentType = 'application/json';
   dio.options.headers['accept'] = 'Application/Json';
