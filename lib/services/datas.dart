@@ -55,7 +55,6 @@ class Datas extends ChangeNotifier{
       _offline = false;
       notifyListeners();
     } catch(e){
-      print('belhanda $e');
       _offline = true;
       env.showAlertDialog(context, 'Datas Errors', '$e');
       notifyListeners();

@@ -48,7 +48,7 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
       {
         "icon": "assets/icons/home.svg",
         "page": HomePage(),
-        "text": "Accueil"
+        "text": 'Accueil'
       }
     ];
   }
@@ -82,17 +82,25 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
         body: Stack(
           children: [
             getBarPage(),
-            Provider.of<Datas>(context, listen: false).offline ? Positioned(
-              bottom: 0.0,
-              child: Container(
-                  height: env.size(context).width / 7,
-                  width: env.size(context).width / 1,
-                  decoration: BoxDecoration(
-                      color: Colors.white
-                  ),
-                  child: offline()
-              ),
-            ) : SizedBox()
+            Consumer<Datas>(
+                builder: (context, datas, child){
+                  try {
+                    return datas.offline ? Positioned(
+                      bottom: 0.0,
+                      child: Container(
+                          height: env.size(context).width / 7,
+                          width: env.size(context).width / 1,
+                          decoration: BoxDecoration(
+                              color: Colors.white
+                          ),
+                          child: offline()
+                      ),
+                    ) : SizedBox();
+                  } catch (e){
+                    return SizedBox();
+                  }
+                }
+            ),
           ],
         )
     );

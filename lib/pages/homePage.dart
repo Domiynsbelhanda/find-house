@@ -111,71 +111,85 @@ class _HomePage extends State<HomePage>{
   }
 
   getFeature() {
-    try{
-      return CarouselSlider(
-        options: CarouselOptions(
-          height: 312,
-          enlargeCenterPage: true,
-          disableCenter: true,
-          viewportFraction: .75,
-        ),
-        items: List.generate(
-          Provider.of<Datas>(context, listen: false).homeLocation.length < 6
-              ? Provider.of<Datas>(context, listen: false).homeLocation.length : 6,
-              (index) => FeatureItem(
-            data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-            onTapFavorite: () {
-              setState(() {
-                // features[index]["is_favorited"] =
-                // !features[index]["is_favorited"];
-              });
-            },
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Details(
-                  data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                )),
-              );
-            },
-          ),
-        ),
-      );
-    }
-    catch(e) {
-      return Center(
-        child: Text('Vérifiez votre connexion internet')
-      );
-    }
+    return Consumer<Datas>(
+        builder: (context, datas, child){
+          try{
+            return CarouselSlider(
+              options: CarouselOptions(
+                height: 312,
+                enlargeCenterPage: true,
+                disableCenter: true,
+                viewportFraction: .75,
+              ),
+              items: List.generate(
+                datas.homeLocation.length < 6
+                    ? datas.homeLocation.length : 6,
+                    (index) => FeatureItem(
+                  data: datas.homeLocation[index],
+                  onTapFavorite: () {
+                    setState(() {
+                      // features[index]["is_favorited"] =
+                      // !features[index]["is_favorited"];
+                    });
+                  },
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Details(
+                        data: Provider.of<Datas>(context, listen: false).homeLocation[index],
+                      )),
+                    );
+                  },
+                ),
+              ),
+            );
+          }
+          catch(e) {
+            return Center(
+                child: Text('Vérifiez votre connexion internet')
+            );
+          }
+        }
+        );
   }
 
   getRecommend() {
-    try{
-      return SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: List.generate(
-            Provider.of<Datas>(context, listen: false).homeLocation.length,
-                (index) => Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: RecommendItem(
-                data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Details(
-                      data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                    )),
-                  );
-                },
+    return Consumer<Datas>(
+      builder: (context, datas, child){
+        try{
+          return SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(15, 5, 0, 5),
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: List.generate(
+                datas.homeLocation.length,
+                    (index) => Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: RecommendItem(
+                    data: datas.homeLocation[index],
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Details(
+                          data: datas.homeLocation[index],
+                        )),
+                      );
+                    },
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      );
-    } catch(e){
-      return SizedBox();
-    }
+          );
+        } catch(e){
+          return SizedBox();
+        }
+      }
+    );
+  }
+
+  @override
+  void initState() {
+    Provider.of<Datas>(context, listen: false).slide(context);
+    Provider.of<Datas>(context, listen: false).homeLoc(context);
   }
 }
