@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:karibukwako/screens/rootScreen.dart';
 import 'package:karibukwako/services/auth.dart';
 import 'package:karibukwako/services/datas.dart';
@@ -19,6 +19,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget{
+
   @override
   Widget build(BuildContext context) {
     Provider.of<Datas>(context, listen: false).slide(context);
@@ -30,9 +31,14 @@ class MyApp extends StatelessWidget{
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           )),
-      home: RootScreen(
-        tab: 0,
-        error: false,
+      home: AnimatedSplashScreen(
+        nextScreen: RootScreen(
+          tab: 0,
+          error: false,
+        ),
+        duration: 2500,
+        splash: "assets/images/text.png",
+        backgroundColor : Colors.white
       ),
     );
   }

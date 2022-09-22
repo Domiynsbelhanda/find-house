@@ -57,6 +57,7 @@ dependencies:
   dialogs: ^0.0.7
   splashscreen: ^1.3.5
   filter_list: ^1.0.2
+  animated_splash_screen: ^1.3.0
 
 dev_dependencies:
   flutter_test:
