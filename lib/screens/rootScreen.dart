@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karibukwako/pages/categoriePage.dart';
 import 'package:karibukwako/pages/contactPage.dart';
 import 'package:karibukwako/utils/env.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,12 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
         "icon": "assets/icons/home.svg",
         "page": HomePage(),
         "text": 'Accueil'
+      },
+
+      {
+        "icon": "assets/icons/pin-area.svg",
+        "page": ListItem(),
+        "text": "Maisons"
       },
 
       {
