@@ -9,6 +9,7 @@ import '../widget/feature_item.dart';
 import '../widget/home_caroussel_item.dart';
 import '../widget/recommand_item.dart';
 import 'detailHouse.dart';
+import 'filterPage.dart';
 
 class HomePage extends StatefulWidget{
   @override
@@ -32,47 +33,54 @@ class _HomePage extends State<HomePage>{
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: GestureDetector(
-                onTap: null,
-                // onTap: ()=>Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => FilterPage(
-                //     allTextList: datas.rooms,
-                //     selectedUserList: [],
-                //   )),
-                // ),
-                child: Container(
-                  height: env.size(context).width / 8,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.black.withOpacity(0.4),
-                    border: Border.all(
-                      color: env.primaryColor,
-                      style: BorderStyle.solid,
-                      width: 1.5,
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Rechercher',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0
+              child: Consumer<Datas>(
+                builder: (context, datas, child){
+                  try {
+                    return GestureDetector(
+                      onTap: ()=>Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FilterPage(
+                          allTextList: datas.all,
+                          selectedUserList: [],
+                        )),
+                      ),
+                      child: Container(
+                        height: env.size(context).width / 8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.black.withOpacity(0.4),
+                          border: Border.all(
+                            color: env.primaryColor,
+                            style: BorderStyle.solid,
+                            width: 1.5,
                           ),
                         ),
-                        Icon(
-                          FontAwesomeIcons.magnifyingGlass,
-                          color: Colors.deepPurple,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Rechercher',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0
+                                ),
+                              ),
+                              Icon(
+                                FontAwesomeIcons.magnifyingGlass,
+                                color: Colors.deepPurple,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  } catch(e){
+                    return SizedBox();
+                  }
+                },
+              )
             ),
 
             const Padding(

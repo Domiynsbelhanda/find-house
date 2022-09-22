@@ -11,6 +11,7 @@ import 'dio.dart';
 class Datas extends ChangeNotifier{
   List<Sliders>? _sliders;
   List<HomeLocation>? _homeLocation;
+  List<HomeLocation>? _all;
   bool? _offline = false;
   HomeLocation? _details;
   int? _reservation;
@@ -19,6 +20,7 @@ class Datas extends ChangeNotifier{
 
   List<Sliders> get sliders => _sliders!;
   List<HomeLocation> get homeLocation => _homeLocation!;
+  List<HomeLocation> get all => _all!;
   bool get offline => _offline!;
   HomeLocation get detail => _details!;
   int get reservation => _reservation!;
@@ -46,12 +48,19 @@ class Datas extends ChangeNotifier{
       Dio.Response response = await dio()!.get('/homedata');
       Map<String, dynamic> mapData = jsonDecode(response.data);
       Iterable datas = mapData['apartments'];
-
       List<HomeLocation> homes = List<HomeLocation>
           .from(datas
           .map((model)=>HomeLocation.fromJson(model)));
 
       _homeLocation = homes;
+
+      Iterable all = mapData['all'];
+      List<HomeLocation> alls = List<HomeLocation>
+          .from(all
+          .map((model)=>HomeLocation.fromJson(model)));
+
+      _all = alls;
+
       _offline = false;
       notifyListeners();
     } catch(e){
