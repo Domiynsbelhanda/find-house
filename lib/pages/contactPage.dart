@@ -41,7 +41,7 @@ class _ContactPage extends State<ContactPage>{
               SizedBox(height: 16.0,),
 
               ContactCard(
-                  icons: FontAwesomeIcons.phoneSlash,
+                  icons: FontAwesomeIcons.squarePhone,
                   title: 'Numéro Téléphone',
                   description: '+ 243 990 416 691'
               ),
