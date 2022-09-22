@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karibukwako/pages/contactPage.dart';
 import 'package:karibukwako/utils/env.dart';
 import 'package:provider/provider.dart';
 
@@ -56,6 +57,12 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
         "icon": "assets/icons/pin-area.svg",
         "page": MapHotels(),
         "text": "Maps"
+      },
+
+      {
+        "icon": "assets/icons/call.svg",
+        "page": ContactPage(),
+        "text": "Contact"
       },
     ];
   }
