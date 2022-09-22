@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../services/datas.dart';
@@ -29,19 +30,50 @@ class _HomePage extends State<HomePage>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Padding(
-            //   padding: const EdgeInsets.only(right: 16.0, top: 16.0),
-            //   child: SingleChildScrollView(
-            //     scrollDirection: Axis.horizontal,
-            //     child: Row(
-            //       children: Provider.of<Datas>(context, listen: false).sliders
-            //           .map((e)=>ItemCaroussel(
-            //         context: context,
-            //         data: e,
-            //       )).toList(),
-            //     )
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GestureDetector(
+                onTap: null,
+                // onTap: ()=>Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => FilterPage(
+                //     allTextList: datas.rooms,
+                //     selectedUserList: [],
+                //   )),
+                // ),
+                child: Container(
+                  height: env.size(context).width / 8,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    color: Colors.black.withOpacity(0.4),
+                    border: Border.all(
+                      color: env.primaryColor,
+                      style: BorderStyle.solid,
+                      width: 1.5,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Rechercher',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18.0
+                          ),
+                        ),
+                        Icon(
+                          FontAwesomeIcons.magnifyingGlass,
+                          color: Colors.deepPurple,
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
             const Padding(
               padding: const EdgeInsets.only(left: 16.0, top: 16.0),
