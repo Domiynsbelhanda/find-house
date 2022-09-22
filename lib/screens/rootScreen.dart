@@ -3,6 +3,7 @@ import 'package:karibukwako/utils/env.dart';
 import 'package:provider/provider.dart';
 
 import '../pages/homePage.dart';
+import '../pages/mapHotels.dart';
 import '../services/datas.dart';
 import '../utils/color.dart';
 import '../utils/error.dart';
@@ -49,7 +50,13 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
         "icon": "assets/icons/home.svg",
         "page": HomePage(),
         "text": 'Accueil'
-      }
+      },
+
+      {
+        "icon": "assets/icons/pin-area.svg",
+        "page": MapHotels(),
+        "text": "Maps"
+      },
     ];
   }
 
