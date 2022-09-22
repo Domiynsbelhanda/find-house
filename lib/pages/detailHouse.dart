@@ -31,6 +31,8 @@ class _DetailsPageState extends State<Details> {
 
   Env env = Env();
 
+  int reservation = 0;
+
   @override
   void initState() {
     Provider.of<Datas>(context, listen: false).details(context, widget.data.id.toString());
@@ -38,7 +40,6 @@ class _DetailsPageState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<Datas>(context, listen: false).details(context, widget.data.id.toString());
     return Scaffold(
       backgroundColor: appBgColor,
       body: Stack(
@@ -412,12 +413,26 @@ class _DetailsPageState extends State<Details> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SizedBox(width: 8.0,),
-                                Text(
-                                  '${Provider.of<Datas>(context, listen: false).reservation} En attente',
-                                  style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: Colors.white
-                                  ),
+                                Consumer<Datas>(
+                                    builder: (context, datas, child){
+                                      try {
+                                        return Text(
+                                          '${datas.reservation != null ? datas.reservation : reservation} En attente',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              color: Colors.white
+                                          ),
+                                        );
+                                      } catch (e){
+                                        return Text(
+                                          '$reservation En attente',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              color: Colors.white
+                                          ),
+                                        );
+                                      }
+                                    }
                                 ),
                               ],
                             ),

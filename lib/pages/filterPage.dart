@@ -30,7 +30,7 @@ class FilterPage extends StatelessWidget {
           },
           choiceChipBuilder: (context, item, isSelected) {
             return Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.only(left: 0, right: 0, top: 16.0, bottom: 16.0),
               child: RecommendItem(
                 data: item,
                 onTap: () {
