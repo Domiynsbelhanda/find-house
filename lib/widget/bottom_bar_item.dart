@@ -10,7 +10,7 @@ class BottomBarItem extends StatelessWidget {
         this.color = Colors.grey,
         this.activeColor = primary,
         this.isActive = false});
-  final String icon;
+  final IconData icon;
   final String text;
   final Color color;
   final Color activeColor;
@@ -30,11 +30,10 @@ class BottomBarItem extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SvgPicture.asset(
+            Icon(
               icon,
               color: isActive ? Colors.black : color,
-              width: 20,
-              height: 20,
+              size: 20,
             ),
             SizedBox(height: 4.0,),
             Text(

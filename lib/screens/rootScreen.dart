@@ -49,25 +49,25 @@ class _RootScreen extends State<RootScreen> with TickerProviderStateMixin{
 
     barItems = [
       {
-        "icon": "assets/icons/home.svg",
+        "icon": Icons.home_outlined,
         "page": HomePage(),
         "text": 'Accueil'
       },
 
       {
-        "icon": "assets/icons/explore.svg",
+        "icon": Icons.travel_explore_outlined,
         "page": ListItem(),
         "text": "Maisons"
       },
 
       {
-        "icon": "assets/icons/pin-area.svg",
+        "icon": Icons.map_outlined,
         "page": MapHotels(),
         "text": "Maps"
       },
 
       {
-        "icon": "assets/icons/call.svg",
+        "icon": Icons.phone_android_outlined,
         "page": ContactPage(),
         "text": "Contact"
       },
