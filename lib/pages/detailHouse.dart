@@ -41,22 +41,9 @@ class _DetailsPageState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: appBgColor,
+      backgroundColor: const Color.fromARGB(255, 237, 245, 252),
       body: Stack(
         children: [
-          Positioned(
-            top: 16.0,
-            left: 15.0,
-            child: IconButton(
-                onPressed: (){
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  FontAwesomeIcons.arrowLeftLong,
-                  color: Colors.black,
-                )
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 60.0),
             child: CustomScrollView(
@@ -315,12 +302,51 @@ class _DetailsPageState extends State<Details> {
   buildBody() {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(top: 5, bottom: 10),
+        padding: const EdgeInsets.only(top: 16, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            getFeature(),
+            Row(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Center(
+                    child: Text(
+                        'Details',
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+
+            Container(
+              margin: const EdgeInsets.all(16.0),
+              height: MediaQuery.of(context).size.width * 0.5,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.0),
+                image: DecorationImage(
+                  image: NetworkImage('https://karibukwako.com/storage/${widget.data.images}'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+
             SizedBox(
               height: 15,
             ),
@@ -588,40 +614,6 @@ class _DetailsPageState extends State<Details> {
                   ],
                 ),
               ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  getFeature() {
-    return Center(
-      child: Container(
-        width: MediaQuery.of(context).size.width / 1.05,
-        height: 220,
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.only(bottom: 5, top: 5),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: shadowColor.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 1,
-              offset: Offset(1, 1), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomImage(
-              'https://karibukwako.com/storage/${widget.data.images}',
-              width: double.infinity,
-              height: 190,
-              radius: 15,
             )
           ],
         ),
