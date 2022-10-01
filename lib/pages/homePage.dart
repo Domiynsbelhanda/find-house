@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../services/datas.dart';
 import '../utils/env.dart';
 import '../widget/feature_item.dart';
+import '../widget/hotels.dart';
 import '../widget/recommand_item.dart';
 import 'detailHouse.dart';
 import 'filterPage.dart';
@@ -159,6 +160,26 @@ class _HomePage extends State<HomePage>{
               ),
             ),
 
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    InkWell(
+                      child: const Hotels(
+                          title: "Archipel Mansion",
+                          image: "assets/hotels/hotel2.png",
+                          location: "Santorini, Greece"),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/archipel');
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             const Padding(
               padding: const EdgeInsets.only(left: 16.0, top: 16.0),
               child: const Text(
@@ -168,6 +189,8 @@ class _HomePage extends State<HomePage>{
                 ),
               ),
             ),
+
+
 
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
