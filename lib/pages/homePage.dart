@@ -196,9 +196,14 @@ class _HomePage extends State<HomePage>{
                       child: Hotels(
                           title: '${e.categories[0].name.toString().substring(0, 6)} ${e.detail.number_pieces} pièces',
                           image: 'https://karibukwako.com/storage/${e.images}',
-                          location: "Santorini, Greece"),
+                          location: '${e.address}'),
                       onTap: () {
-                        Navigator.pushNamed(context, '/archipel');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Details(
+                            data: e,
+                          )),
+                        );
                       },
                     );
                   }).toList(),
@@ -224,12 +229,7 @@ class _HomePage extends State<HomePage>{
                     });
                   },
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Details(
-                        data: Provider.of<Datas>(context, listen: false).homeLocation[index],
-                      )),
-                    );
+
                   },
                 ),
               ),
