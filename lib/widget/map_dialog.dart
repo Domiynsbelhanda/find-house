@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karibukwako/models/HomeLocation.dart';
-
 import '../pages/detailHouse.dart';
-import 'feature_item.dart';
+import 'hotels.dart';
 
 show_room_map_dialog(BuildContext context, HomeLocation rooms) {
 
@@ -29,10 +28,11 @@ show_room_map_dialog(BuildContext context, HomeLocation rooms) {
   // set up the AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text('${rooms.categories[0].name} ${rooms.detail.number_pieces} pièces'),
-    content: FeatureItem(
-      data: rooms,
-      onTapFavorite: () {
-      },
+    content: GestureDetector(
+      child: Hotels(
+          title: '${rooms.categories[0].name.toString().substring(0, 6)} ${rooms.detail.number_pieces} pièces',
+          image: 'https://karibukwako.com/storage/${rooms.images}',
+          location: '${rooms.address}'),
       onTap: () {
         Navigator.push(
           context,

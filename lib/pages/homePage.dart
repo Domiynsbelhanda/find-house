@@ -1,11 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../services/datas.dart';
 import '../utils/env.dart';
-import '../widget/feature_item.dart';
 import '../widget/hotels.dart';
 import '../widget/recommand_item.dart';
 import 'detailHouse.dart';
