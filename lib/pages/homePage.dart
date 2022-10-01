@@ -132,7 +132,32 @@ class _HomePage extends State<HomePage>{
               )
             ),
 
-
+            SizedBox(
+              height: 60,
+              width: env.size(context).width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text(
+                      "Meilleures Maisons",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.normal,
+                          color: Color.fromARGB(143, 0, 0, 0)),
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(right: 15),
+                      child: Text("",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w100,
+                              color: Color.fromARGB(143, 0, 0, 0)))),
+                ],
+              ),
+            ),
 
             const Padding(
               padding: const EdgeInsets.only(left: 16.0, top: 16.0),
