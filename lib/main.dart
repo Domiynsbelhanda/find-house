@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:karibukwako/screens/carouselScreen.dart';
 import 'package:karibukwako/screens/rootScreen.dart';
 import 'package:karibukwako/services/auth.dart';
 import 'package:karibukwako/services/datas.dart';
@@ -7,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   runApp(
       MultiProvider(
         providers: [
@@ -32,14 +36,19 @@ class MyApp extends StatelessWidget{
             Theme.of(context).textTheme,
           )),
       home: AnimatedSplashScreen(
-        nextScreen: RootScreen(
-          tab: 0,
-          error: false,
-        ),
+        nextScreen: CarouselScreen(),
         duration: 2500,
         splash: "assets/images/text.png",
         backgroundColor : Colors.white
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
   }
 }
