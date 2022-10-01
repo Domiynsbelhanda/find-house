@@ -51,7 +51,7 @@ class _HotelsState extends State<Hotels> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.location,
+                          widget.title,
                           style: const TextStyle(
                               fontWeight: FontWeight.normal, fontSize: 18),
                         ),
@@ -62,18 +62,7 @@ class _HotelsState extends State<Hotels> {
                         ),
                       ],
                     ),
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: const Color.fromRGBO(3, 100, 176, 65),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Icon(
-                        Icons.bookmark_border_rounded,
-                        color: Colors.white,
-                      ),
-                    )
+
                   ],
                 ),
               )

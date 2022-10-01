@@ -160,42 +160,7 @@ class _HomePage extends State<HomePage>{
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 15),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    InkWell(
-                      child: const Hotels(
-                          title: "Archipel Mansion",
-                          image: "assets/hotels/hotel2.png",
-                          location: "Santorini, Greece"),
-                      onTap: () {
-                        Navigator.pushNamed(context, '/archipel');
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 16.0),
-              child: const Text(
-                'Meilleures maisons',
-                style: const TextStyle(
-                    fontSize: 20.0
-                ),
-              ),
-            ),
-
-
-
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: getFeature(),
-            ),
+            getFeature(),
 
             Padding(
               padding: const EdgeInsets.only(left: 16.0, top: 16.0),
@@ -221,6 +186,25 @@ class _HomePage extends State<HomePage>{
     return Consumer<Datas>(
         builder: (context, datas, child){
           try{
+            return Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: datas.homeLocation.map((e){
+                    return InkWell(
+                      child: Hotels(
+                          title: '${e.categories[0].name.toString().substring(0, 6)} ${e.detail.number_pieces} pièces',
+                          image: 'https://karibukwako.com/storage/${e.images}',
+                          location: "Santorini, Greece"),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/archipel');
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+            );
             return CarouselSlider(
               options: CarouselOptions(
                 height: 312,
