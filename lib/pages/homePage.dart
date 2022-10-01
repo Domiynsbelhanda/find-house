@@ -162,20 +162,38 @@ class _HomePage extends State<HomePage>{
 
             getFeature(),
 
-            Padding(
-              padding: const EdgeInsets.only(left: 16.0, top: 16.0),
-              child: Text(
-                'Nouvelles offres',
-                style: TextStyle(
-                  fontSize: 20.0
-                ),
+            SizedBox(
+              height: 60,
+              width: env.size(context).width,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.only(left: 15),
+                    child: Text(
+                      "Nouvelles offres",
+                      style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.normal,
+                          color: Color.fromARGB(143, 0, 0, 0)),
+                    ),
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(right: 15),
+                      child: Text("",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w100,
+                              color: Color.fromARGB(143, 0, 0, 0)))),
+                ],
               ),
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 16.0),
-              child: getRecommend(),
-            ),
+            getRecommend(),
+
+            const SizedBox(
+              height: 16.0
+            )
           ],
         ),
       ),
@@ -207,30 +225,6 @@ class _HomePage extends State<HomePage>{
                       },
                     );
                   }).toList(),
-                ),
-              ),
-            );
-            return CarouselSlider(
-              options: CarouselOptions(
-                height: 312,
-                enlargeCenterPage: true,
-                disableCenter: true,
-                viewportFraction: .75,
-              ),
-              items: List.generate(
-                datas.homeLocation.length < 6
-                    ? datas.homeLocation.length : 6,
-                    (index) => FeatureItem(
-                  data: datas.homeLocation[index],
-                  onTapFavorite: () {
-                    setState(() {
-                      // features[index]["is_favorited"] =
-                      // !features[index]["is_favorited"];
-                    });
-                  },
-                  onTap: () {
-
-                  },
                 ),
               ),
             );
