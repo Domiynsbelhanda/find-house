@@ -20,6 +20,7 @@ class _ContactPage extends State<ContactPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 237, 245, 252),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

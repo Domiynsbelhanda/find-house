@@ -30,7 +30,7 @@ class ContactCard extends StatelessWidget{
                 Icon(
                   icons,
                   size: env.size(context).width / 10,
-                  color: env.primaryColor,
+                  color: Color.fromRGBO(3, 100, 176, 65),
                 ),
 
                 SizedBox(height: 8.0,),
