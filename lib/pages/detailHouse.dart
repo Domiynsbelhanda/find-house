@@ -3,13 +3,10 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:karibukwako/models/HomeLocation.dart';
 import 'package:provider/provider.dart';
-import '../services/auth.dart';
-import 'package:intl/intl.dart';
 
 import '../services/datas.dart';
 import '../utils/color.dart';
 import '../utils/env.dart';
-import '../widget/custom_image.dart';
 import '../widget/url_launcher_files.dart';
 
 class Details extends StatefulWidget {
@@ -107,7 +104,7 @@ class _DetailsPageState extends State<Details> {
                               await FlutterShare.share(
                                   title: 'KaribuKwako',
                                   text: '${widget.data.categories[0].name} ${widget.data.detail.number_pieces} Pièce (s)',
-                                  linkUrl: 'https://karibukwako/maisons/${widget.data.id}',
+                                  linkUrl: 'http://karibukwako/maisons/${widget.data.id}',
                                   chooserTitle: ''
                               );
                             },
@@ -341,7 +338,7 @@ class _DetailsPageState extends State<Details> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16.0),
                 image: DecorationImage(
-                  image: NetworkImage('https://karibukwako.com/storage/${widget.data.images}'),
+                  image: NetworkImage('http://karibukwako.com/storage/${widget.data.images}'),
                   fit: BoxFit.cover,
                 ),
               ),

@@ -31,7 +31,7 @@ show_room_map_dialog(BuildContext context, HomeLocation rooms) {
     content: GestureDetector(
       child: Hotels(
           title: '${rooms.categories[0].name.toString().substring(0, 6)} ${rooms.detail.number_pieces} pièces',
-          image: 'https://karibukwako.com/storage/${rooms.images}',
+          image: 'http://karibukwako.com/storage/${rooms.images}',
           location: '${rooms.address}'),
       onTap: () {
         Navigator.push(

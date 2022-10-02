@@ -210,7 +210,7 @@ class _HomePage extends State<HomePage>{
                     return InkWell(
                       child: Hotels(
                           title: '${e.categories[0].name.toString().substring(0, 6)} ${e.detail.number_pieces} pièces',
-                          image: 'https://karibukwako.com/storage/${e.images}',
+                          image: 'http://karibukwako.com/storage/${e.images}',
                           location: '${e.address}'),
                       onTap: () {
                         Navigator.push(
