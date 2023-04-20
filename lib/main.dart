@@ -29,14 +29,14 @@ class MyApp extends StatelessWidget{
     Provider.of<Datas>(context, listen: false).slide(context);
     Provider.of<Datas>(context, listen: false).homeLoc(context);
     return MaterialApp(
-      title: 'Karibu Kwako',
+      title: 'Find House',
       debugShowCheckedModeBanner: false,
       theme:ThemeData(
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           )),
       home: AnimatedSplashScreen(
-        nextScreen: CarouselScreen(),
+        nextScreen: const CarouselScreen(),
         duration: 2500,
         splash: "assets/images/text.png",
         backgroundColor : Colors.white
